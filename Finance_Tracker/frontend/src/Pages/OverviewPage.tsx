@@ -270,7 +270,7 @@ const OverviewPage = () => {
             
         </table>
         <div></div>
-        <h1>Financial Overview</h1>
+        <h1>Weekly Financial Overview</h1>
         {chartPositive && <div>
             <PieChart
             style={{ height: '350px', padding: '20px'}}

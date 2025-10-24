@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { APIContext } from '../Contexts/APIContext';
 
 import "../Styles/Pages/landing.css";
 
@@ -10,12 +11,13 @@ const Login = () => {
     const [responseMessage, setResponseMessage] = useState('');
     const [responseError, setResponseError] = useState(false);
     const navigate = useNavigate();
+    const url = useContext(APIContext);
 
     //Make login request to server login API
     const handleSubmit = async (e : any) => {
         e.preventDefault();
 
-        axios.post('http://127.0.0.1:8000/login/', {"username":username, "password":password})
+        axios.post(url + 'login/', {"username":username, "password":password})
             .then(function(response){
                 console.log('Response:', response.data);
                 localStorage.setItem('refresh_token', response.data.refresh);

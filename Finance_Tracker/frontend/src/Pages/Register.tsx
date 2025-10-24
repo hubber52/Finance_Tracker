@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { APIContext } from '../Contexts/APIContext';
 
 import "../Styles/Pages/landing.css";
 
@@ -10,13 +11,14 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
     const navigate = useNavigate();
+    const url = useContext(APIContext);
     
     const handleSubmit = async (e : any) => {
         e.preventDefault();
 
     // API call to register a user
         try {
-          const response = await axios.post('http://127.0.0.1:8000/register/', {"username":username, "password":password, "email":email});
+          const response = await axios.post(url+'register/', {"username":username, "password":password, "email":email});
           setResponseMessage('Post created successfully!');
           console.log('Response:', response.data);
           if(!window.confirm('Account creation successful, please log in')) return;

@@ -1,7 +1,5 @@
 from django.db import models
-from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from .custom_manager import CustomManager
 
 class DebtManager(models.Manager):
@@ -9,7 +7,7 @@ class DebtManager(models.Manager):
         super().get_queryset()    
 
 class DebtModel(models.Model):
-    id = models.BigAutoField(primary_key = True)
+    id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, 
                              on_delete=models.CASCADE, 
                              related_name = 'DebtModel',

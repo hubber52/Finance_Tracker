@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from .custom_manager import CustomManager
 
 class IncomeModel(models.Model):
-    id = models.BigAutoField(primary_key = True)
+    id = models.BigAutoField(primary_key=True)
     username = models.CharField(max_length=100, default = "", blank = True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, 
                              on_delete=models.CASCADE, 
